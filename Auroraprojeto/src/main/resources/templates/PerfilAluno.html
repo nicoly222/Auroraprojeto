@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Aluno</title>
+    <link rel="stylesheet" href="estilo-perfil.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <div class="logo-box">
+                <div class="hat-icon">🎓</div>
+            </div>
+            <nav class="nav-items">
+                <a href="#" class="nav-link"><span class="marker"></span> Início</a>
+                <a href="#" class="nav-link"><span class="marker"></span> Disciplinas</a>
+                <a href="#" class="nav-link"><span class="marker"></span> Exercícios</a>
+                <a href="#" class="nav-link"><span class="marker"></span> Provas anteriores</a>
+                <a href="#" class="nav-link"><span class="marker"></span> Material extra</a>
+                <a href="#" class="nav-link active"><span class="marker"></span> Perfil</a>
+            </nav>
+            <div class="nav-bottom">
+                <a href="#" class="nav-link"><span class="marker"></span> Sair</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-search">
+                <input type="text" placeholder="Pesquisar" class="search-bar">
+            </header>
+
+            <div class="content-scroll">
+                <form action="/salvarPerfil" method="POST" class="purple-card">
+                    <div class="card-header">
+                        <div class="title-group">
+                            <h3>Informações pessoais</h3>
+                            <p>Em caso de dados desatualizados, corrija-os aqui</p>
+                        </div>
+                        <button type="submit" class="btn-save">SALVAR</button>
+                    </div>
+                    <div class="form-grid">
+                        <div class="input-wrap">
+                            <label>Nome completo</label>
+                            <input type="text" name="nome" id="edit-nome" placeholder="Digite seu nome...">
+                        </div>
+                        <div class="input-wrap">
+                            <label>Curso Pretendido</label>
+                            <input type="text" name="curso" id="edit-curso" placeholder="Ex: Educação Física">
+                        </div>
+                        <div class="input-wrap">
+                            <label>Email</label>
+                            <input type="email" name="email" id="edit-email" placeholder="seu@email.com">
+                        </div>
+                        <div class="input-wrap">
+                            <label>Cidade</label>
+                            <input type="text" name="cidade" id="edit-cidade" placeholder="Sua cidade">
+                        </div>
+                        <div class="input-wrap">
+                            <label>Telefone</label>
+                            <input type="text" name="telefone" id="edit-tel" placeholder="(00) 00000-0000">
+                        </div>
+                    </div>
+                </form>
+
+                <div class="purple-card">
+                    <div class="card-header">
+                        <h3>Informações do Aluno (Visualização)</h3>
+                        <span class="expand-icon">⤢</span>
+                    </div>
+                    <div class="white-box">
+                        <div class="display-grid">
+                            <div class="info-cell"><strong>Nome</strong><p id="display-nome"></p></div>
+                            <div class="info-cell"><strong>Curso Pretendido</strong><p id="display-curso"></p></div>
+                            <div class="info-cell"><strong>Email</strong><p id="display-email"></p></div>
+                            <div class="info-cell"><strong>Telefone</strong><p id="display-tel"></p></div>
+                            <div class="info-cell"><strong>ID</strong><p id="display-id">1234567</p></div>
+                            <div class="info-cell"><strong>Cidade</strong><p id="display-cidade"></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <div class="profile-card">
+                <div class="avatar-box">
+                    <div class="avatar-circle">👤</div>
+                    <button type="button" class="btn-plus">+</button>
+                </div>
+                <h2 id="side-name"></h2>
+                <span class="badge">Estudante</span>
+            </div>
+
+            <div class="side-block">
+                <h4>Localização 📍</h4>
+                <div class="white-item" id="side-city"></div>
+            </div>
+
+            <div class="side-block">
+                <h4>Calendário</h4>
+                <div class="white-item calendar-text">
+                    <p>01/10 - Inscrições ENEM</p>
+                    <p>09/11 - ENEM Dia 1</p>
+                    <p>16/11 - ENEM Dia 2</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Sincronização em tempo real sem valores iniciais
+        const fields = ['nome', 'curso', 'email', 'cidade', 'tel'];
+        
+        fields.forEach(f => {
+            const input = document.getElementById(`edit-${f}`);
+            const display = document.getElementById(`display-${f}`);
+            
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                
+                // Atualiza o card de visualização central
+                if(display) display.innerText = value;
+                
+                // Atualiza a barra lateral direita
+                if(f === 'nome') document.getElementById('side-name').innerText = value;
+                if(f === 'cidade') document.getElementById('side-city').innerText = value;
+            });
+        });
+    </script>
+</body>
+</html>

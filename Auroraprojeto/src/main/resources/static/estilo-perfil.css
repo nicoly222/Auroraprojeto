@@ -1,0 +1,55 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f0f2f5; height: 100vh; overflow: hidden; }
+
+.dashboard-container { display: flex; height: 100vh; padding: 20px; gap: 20px; }
+
+/* BARRA ESQUERDA (MENU ROXO) */
+.sidebar-left {
+    width: 250px; background: linear-gradient(180deg, #9c62d9 0%, #6d3fb4 100%);
+    border-radius: 30px; padding: 40px 25px; display: flex; flex-direction: column; color: white;
+}
+.logo-box { 
+    background: rgba(255,255,255,0.2); width: 70px; height: 70px; 
+    border-radius: 20px; margin: 0 auto 50px; display: flex; align-items: center; justify-content: center; font-size: 35px;
+}
+.nav-link { 
+    text-decoration: none; color: rgba(255,255,255,0.7); display: flex; 
+    align-items: center; gap: 12px; margin-bottom: 20px; font-size: 14px; 
+}
+.nav-link.active { color: white; font-weight: bold; }
+.marker { width: 14px; height: 14px; background: rgba(255,255,255,0.3); border-radius: 4px; }
+.active .marker { background: white; box-shadow: 0 0 8px #fff; }
+.nav-bottom { margin-top: auto; }
+
+/* CENTRO */
+.main-content { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+.search-bar { width: 350px; padding: 12px 25px; border-radius: 50px; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.content-scroll { overflow-y: auto; padding-right: 10px; }
+.purple-card { background: #9c62d9; border-radius: 30px; padding: 25px; color: white; margin-bottom: 20px; }
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.card-header p { font-size: 12px; opacity: 0.8; }
+.btn-save { 
+    background: white; color: #6d3fb4; border: none; padding: 8px 25px; 
+    border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.input-wrap label { font-size: 11px; margin-left: 10px; display: block; margin-bottom: 5px; }
+.input-wrap input { 
+    width: 100%; padding: 12px 20px; border-radius: 50px; border: none; 
+    background: rgba(255,255,255,0.95); outline: none; color: #333; 
+}
+.white-box { background: white; border-radius: 25px; padding: 25px; color: #333; }
+.display-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.info-cell strong { font-size: 11px; color: #999; display: block; margin-bottom: 3px; }
+.info-cell p { font-size: 14px; font-weight: bold; min-height: 1.2em; }
+
+/* BARRA DIREITA (PERFIL CINZA) */
+.sidebar-right { width: 300px; background: #e9eaec; border-radius: 35px; padding: 25px; display: flex; flex-direction: column; gap: 20px; }
+.profile-card { background: white; border-radius: 25px; padding: 30px; text-align: center; }
+.avatar-box { position: relative; width: 100px; margin: 0 auto 15px; }
+.avatar-circle { width: 100px; height: 100px; background: #2c3e50; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 50px; }
+.btn-plus { position: absolute; bottom: 5px; right: 5px; background: black; color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 20px; }
+.badge { background: #f0f0f0; padding: 5px 15px; border-radius: 20px; font-size: 12px; color: #777; display: inline-block; margin-top: 10px; }
+.side-block h4 { font-size: 14px; color: #444; margin-left: 5px; }
+.white-item { background: white; border-radius: 15px; padding: 15px; margin-top: 10px; font-size: 13px; min-height: 45px; }
+.calendar-text p { font-size: 11px; margin-bottom: 6px; color: #555; }

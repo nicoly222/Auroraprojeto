@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TelaMateria - Provas Anteriores</title>
+    <link rel="stylesheet" href="TelaProvas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar-provas">
+            <div class="logo-section">
+                <div class="icon-wrapper">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="TelaInicio.html" class="nav-item"><i class="fas fa-th-large"></i> Início</a>
+                <a href="TelaDisciplinas.html" class="nav-item"><i class="fas fa-book"></i> Disciplinas</a>
+                <a href="TelaExercicios.html" class="nav-item"><i class="fas fa-edit"></i> Exercícios</a>
+                <a href="#" class="nav-item active"><i class="fas fa-file-alt"></i> Provas anteriores</a>
+                <a href="#" class="nav-item"><i class="fas fa-plus-circle"></i> Material extra</a>
+                <a href="#" class="nav-item"><i class="fas fa-user"></i> Perfil</a>
+                <div class="spacer"></div>
+                <a href="#" class="nav-item logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </nav>
+        </aside>
+
+        <main class="main-layout">
+            <header class="header-top">
+                <div class="search-global">
+                    <input type="text" placeholder="Pesquisar prova ou ano">
+                </div>
+                
+                <div class="user-info-header">
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40" alt="Avatar" class="avatar">
+                        <div class="user-text">
+                            <span class="user-name">Eduardo Costa</span>
+                            <span class="user-status">Online</span>
+                        </div>
+                    </div>
+                    <div class="top-icons">
+                        <i class="far fa-bell"></i>
+                        <i class="fas fa-cog"></i>
+                    </div>
+                </div>
+            </header>
+
+            <section class="content-body">
+                <h1 class="title-page">Provas Anteriores</h1>
+                
+                <div class="provas-grid">
+                    <div class="prova-card">
+                        <div class="prova-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="prova-info">
+                            <h3>ENEM 2024</h3>
+                            <span>Caderno Azul - 1º Dia</span>
+                        </div>
+                        <button class="btn-download"><i class="fas fa-cloud-download-alt"></i></button>
+                    </div>
+
+                    <div class="prova-card">
+                        <div class="prova-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="prova-info">
+                            <h3>ENEM 2024</h3>
+                            <span>Caderno Amarelo - 2º Dia</span>
+                        </div>
+                        <button class="btn-download"><i class="fas fa-cloud-download-alt"></i></button>
+                    </div>
+
+                    <div class="prova-card">
+                        <div class="prova-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="prova-info">
+                            <h3>UERJ 2025</h3>
+                            <span>Exame de Qualificação</span>
+                        </div>
+                        <button class="btn-download"><i class="fas fa-cloud-download-alt"></i></button>
+                    </div>
+
+                    <div class="prova-card">
+                        <div class="prova-icon"><i class="fas fa-file-pdf"></i></div>
+                        <div class="prova-info">
+                            <h3>FUVEST 2024</h3>
+                            <span>Primeira Fase</span>
+                        </div>
+                        <button class="btn-download"><i class="fas fa-cloud-download-alt"></i></button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
