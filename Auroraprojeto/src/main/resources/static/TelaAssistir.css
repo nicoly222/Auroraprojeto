@@ -1,0 +1,63 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { background-color: #f8f9fe; height: 100vh; overflow: hidden; }
+
+/* Força as 3 colunas: Sidebar (260px) | Player (1fr) | Playlist (320px) */
+.dashboard-container { 
+    display: grid;
+    grid-template-columns: 260px 1fr 320px;
+    gap: 20px;
+    height: 100vh;
+    padding: 15px;
+}
+
+/* SIDEBAR ROXA IGUAL ÀS FOTOS */
+.sidebar-main {
+    background: linear-gradient(180deg, #9b6bff 0%, #6d39cf 100%) !important;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    height: 100%;
+}
+
+.logo-section .icon-wrapper {
+    background: rgba(255, 255, 255, 0.2);
+    width: 80px; height: 80px; border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 50px; color: white; font-size: 40px;
+}
+
+.nav-item {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: flex; align-items: center;
+    font-size: 15px;
+    border-radius: 12px;
+}
+
+.nav-item.active { background: rgba(255, 255, 255, 0.2) !important; color: white !important; }
+
+/* PLAYER E VÍDEO */
+.main-layout { overflow-y: auto; }
+
+.video-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-wrapper iframe { width: 100%; height: 100%; border: none; }
+
+/* PLAYLIST NA DIREITA */
+.playlist-card {
+    background: white;
+    border-radius: 30px;
+    padding: 25px;
+    height: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}

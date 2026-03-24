@@ -1,126 +1,85 @@
 :root {
     --purple-grad: linear-gradient(180deg, #9b6bff 0%, #6d39cf 100%);
     --bg-light: #f8f9fe;
-    --white: #ffffff;
 }
 
-* {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { background-color: var(--bg-light); height: 100vh; overflow: hidden; }
+
+/* CONTAINER PRINCIPAL (GRID DE 3 COLUNAS) */
+.dashboard-container { 
+    display: grid;
+    grid-template-columns: 260px 1fr 320px; /* Sidebar | Conteúdo | Playlist */
+    gap: 20px;
+    height: 100vh;
+    padding: 15px;
 }
 
-body { background-color: var(--bg-light); }
-
-.dashboard-container { display: flex; height: 100vh; padding: 15px; }
-
-/* SIDEBAR (Padronizada) */
-.sidebar-inicio {
+/* --- SUA SIDEBAR EXATA --- */
+.sidebar-main {
     width: 260px;
+    min-width: 260px;
     background: var(--purple-grad);
-    border-radius: 25px;
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
     padding: 40px 20px;
+    height: 100%; /* Garante que ocupe a altura toda */
 }
 
-.logo-section { text-align: center; margin-bottom: 50px; }
-.icon-wrapper {
+.logo-section .icon-wrapper {
     background: rgba(255, 255, 255, 0.2);
-    width: 80px; height: 80px;
-    border-radius: 20px;
+    width: 80px; height: 80px; border-radius: 20px;
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto; color: white; font-size: 40px;
+    margin: 0 auto 50px; color: white; font-size: 40px;
 }
 
 .nav-menu { display: flex; flex-direction: column; height: 100%; }
+
 .nav-item {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    padding: 14px 18px;
+    padding: 15px 20px;
     display: flex; align-items: center;
-    font-size: 14px;
+    font-size: 15px;
+    transition: 0.3s;
 }
 
 .nav-item.active {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     color: white; border-radius: 12px; font-weight: 600;
 }
-.nav-item i { margin-right: 15px; width: 20px; }
+
+.nav-item i { margin-right: 15px; width: 20px; text-align: center; }
 .spacer { flex-grow: 1; }
 
-/* CONTEÚDO */
-.main-layout { flex: 1; padding: 10px 40px; }
+/* --- CONTEÚDO CENTRAL (PLAYER) --- */
+.main-layout { overflow-y: auto; padding-right: 5px; }
 
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
+.video-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.search-global input {
-    width: 400px; padding: 12px 25px;
-    border-radius: 25px; border: none;
-    background: var(--white);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
+.video-wrapper iframe { width: 100%; height: 100%; border: none; }
 
-.user-info-header { display: flex; align-items: center; gap: 30px; }
-.user-profile { display: flex; align-items: center; gap: 12px; }
-.avatar { width: 40px; height: 40px; border-radius: 50%; }
-.user-name { display: block; font-weight: 600; font-size: 14px; }
-.user-status { font-size: 11px; color: #2ecc71; display: block; }
-
-.top-icons { display: flex; gap: 20px; font-size: 18px; color: #444; }
-
-/* DASHBOARD CONTENT */
-.welcome-text { font-size: 28px; margin-bottom: 30px; color: #333; }
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.stat-card {
+.video-info-box {
     background: white;
+    margin-top: 20px;
     padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
-.stat-card h3 { font-size: 14px; color: #888; margin-bottom: 10px; }
-.stat-number { font-size: 32px; font-weight: 700; color: #6d39cf; }
-
-.section-title { font-size: 20px; margin-bottom: 20px; color: #444; }
-
-.continue-card {
-    background: var(--purple-grad);
-    color: white;
-    padding: 30px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.tag {
-    background: rgba(255,255,255,0.2);
-    padding: 5px 12px;
-    border-radius: 10px;
-    font-size: 12px;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-
-.btn-play {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
+/* --- PLAYLIST DIREITA --- */
+.right-column {
     background: white;
-    color: #6d39cf;
-    font-size: 18px;
-    cursor: pointer;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }

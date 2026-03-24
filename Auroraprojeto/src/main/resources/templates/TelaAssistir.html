@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora - Assistindo Aula</title>
+   <link rel="stylesheet" href="/TelaAssistir.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar-main">
+            <div class="logo-section">
+                <div class="icon-wrapper"><i class="fas fa-graduation-cap"></i></div>
+            </div>
+            <nav class="nav-menu">
+                <a href="/inicio" class="nav-item"><i class="fas fa-th-large"></i> Início</a>
+                <a href="/disciplinas" class="nav-item active"><i class="fas fa-book"></i> Disciplinas</a>
+                <a href="/exercicios" class="nav-item"><i class="fas fa-edit"></i> Exercícios</a>
+                <a href="/provas" class="nav-item"><i class="fas fa-file-alt"></i> Provas anteriores</a>
+                <div class="spacer"></div>
+                <a href="/login" class="nav-item logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </nav>
+        </aside>
+
+        <main class="main-layout">
+            <div class="navigation-back">
+                <a href="/aulas" style="text-decoration: none; color: #9b6bff; font-weight: 600;">
+                    <i class="fas fa-arrow-left"></i> Voltar para a lista
+                </a>
+            </div>
+
+            <section class="player-section">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div class="video-info-box">
+                    <h1>01. Adição e Subtração: Fundamentos</h1>
+                    <p>Nesta aula revisamos as propriedades da adição e como resolver problemas de subtração com reserva.</p>
+                    
+                 
+                </div>
+            </section>
+        </main>
+
+        <aside class="right-column">
+            <div class="playlist-card">
+                <h4>Conteúdo da Disciplina</h4>
+                <div class="playlist-items">
+                    <div class="playlist-item active">
+                        <div class="item-index">01</div>
+                        <div class="item-info">
+                            <h5>Adição e Subtração</h5>
+                            <span>15:20</span>
+                        </div>
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+
+                    <div class="playlist-item">
+                        <div class="item-index">02</div>
+                        <div class="item-info">
+                            <h5>Multiplicação</h5>
+                            <span>22:10</span>
+                        </div>
+                    </div>
+
+                    <div class="playlist-item">
+                        <div class="item-index">03</div>
+                        <div class="item-info">
+                            <h5>Divisão Real</h5>
+                            <span>18:45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+</body>
+</html>

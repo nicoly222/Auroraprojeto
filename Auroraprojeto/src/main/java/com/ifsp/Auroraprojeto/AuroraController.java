@@ -47,4 +47,15 @@ public class AuroraController {
     public String perfil() {
         return "PerfilAluno";
     }
+    @GetMapping("/aulas")
+    public String paginaAulas() {
+        // Retorna o nome do arquivo HTML (sem o .html)
+        return "TelaAulas";
+        
+}
+
+@GetMapping("/assistir")
+public String assistir() {
+    return "TelaAssistir"; // Certifique-se de que o arquivo seja Assistir.html
+}
 }
