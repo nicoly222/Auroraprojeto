@@ -1,33 +1,37 @@
 package com.ifsp.Auroraprojeto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class UsuarioService {
 
-    private static List<Usuario> usuarios = new ArrayList<>();
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-   
-    // CADASTRO
-    public static boolean cadastrar(Usuario usuario) {
-        // evita emails duplicados
-        for (Usuario u : usuarios) {
-            if (u.getEmail().equals(usuario.getEmail())) {
-                return false; // email já cadastrado
-            }
+    public boolean cadastrar(Usuario usuario){
+
+        Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
+
+        if(usuarioExistente.isPresent()){
+            return false;
         }
-        usuarios.add(usuario);
-        return true; // cadastro feito
+
+        usuarioRepository.save(usuario);
+
+        return true;
     }
-    
-    // LOGIN
-    
-    public static Usuario login(String email, String senha) {
-        for (Usuario u : usuarios) {
-            if (u.getEmail().equals(email) && u.getSenha().equals(senha)) {
-                return u;
-            }
+
+    public Usuario login(String email, String senha){
+
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+
+        if(usuario.isPresent() && usuario.get().getSenha().equals(senha)){
+            return usuario.get();
         }
+
         return null;
     }
 }

@@ -14,22 +14,23 @@
                 <h1 class="title">Cadastrar</h1>
                 <p class="subtitle">Informe seus dados</p>
 
-                <form>
+                <form action="/cadastro" method="post">
+                
                     <div class="input-group">
                         <label>Nome</label>
-                        <input type="text" required>
+                        <input type="text" name="nome" required>
                     </div>
                     <div class="input-group">
                         <label>Email</label>
-                        <input type="email" required>
+                        <input type="email" name = "email" required>
                     </div>
                     <div class="input-group">
                         <label>Telefone</label>
-                        <input type="tel" required>
+                        <input type="tel" name="telefone" required>
                     </div>
                     <div class="input-group">
                         <label>Senha</label>
-                        <input type="password" required>
+                        <input type="password" name="senha" required>
                     </div>
                     <button type="submit" class="btn-cadastrar">Cadastrar</button>
                 </form>

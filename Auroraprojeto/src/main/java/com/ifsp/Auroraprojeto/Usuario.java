@@ -1,30 +1,28 @@
 package com.ifsp.Auroraprojeto;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
-    
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nome;
     private String email;
     private String senha;
-    private String telefone;
 
-
-    public Usuario() {}
-
-  
-    public Usuario(int id, String nome, String email, String senha, String telefone) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -36,6 +34,8 @@ public class Usuario {
         this.nome = nome;
     }
 
+
+
     public String getEmail() {
         return email;
     }
@@ -43,6 +43,8 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+
+ 
 
     public String getSenha() {
         return senha;
@@ -52,14 +54,4 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-    
 }
-
