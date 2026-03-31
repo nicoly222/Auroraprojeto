@@ -58,4 +58,26 @@ public class AuroraController {
 public String assistir() {
     return "TelaAssistir"; // Certifique-se de que o arquivo seja Assistir.html
 }
+
+// --- ROTAS DO ADMINISTRADOR ---
+
+    @GetMapping("/admin")
+    public String adminPrincipal() {
+        return "admin-dashboard"; // Abre o arquivo admin.html
+    }
+
+    @GetMapping("/admin/conteudo")
+    public String adminConteudo() {
+        return "gerenciar-aulas"; // Abre o arquivo gerenciar-aulas.html
+    }
+
+    @GetMapping("/admin/provas")
+    public String adminProvas() {
+        return "upload-provas"; // Abre o arquivo upload-provas.html
+    }
+
+    @GetMapping("/admin/materiais")
+    public String adminMateriais() {
+        return "materiais-extras"; // Abre o arquivo materiais-extras.html
+    }
 }
