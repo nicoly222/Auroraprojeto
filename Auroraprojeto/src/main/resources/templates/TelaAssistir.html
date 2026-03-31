@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurora - Assistindo Aula</title>
-   <link rel="stylesheet" href="/TelaAssistir.css">
+    <link rel="stylesheet" href="TelaAssistir.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -12,24 +12,30 @@
     <div class="dashboard-container">
         <aside class="sidebar-main">
             <div class="logo-section">
-                <div class="icon-wrapper"><i class="fas fa-graduation-cap"></i></div>
+                <div class="icon-wrapper">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
             </div>
             <nav class="nav-menu">
-                <a href="/inicio" class="nav-item"><i class="fas fa-th-large"></i> Início</a>
-                <a href="/disciplinas" class="nav-item active"><i class="fas fa-book"></i> Disciplinas</a>
-                <a href="/exercicios" class="nav-item"><i class="fas fa-edit"></i> Exercícios</a>
-                <a href="/provas" class="nav-item"><i class="fas fa-file-alt"></i> Provas anteriores</a>
-                <div class="spacer"></div>
-                <a href="/login" class="nav-item logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
-            </nav>
+    <a href="/inicio" class="nav-item active"><i class="fas fa-th-large"></i> Início</a>
+    <a href="/disciplinas" class="nav-item"><i class="fas fa-book"></i> Disciplinas</a>
+    <a href="/exercicios" class="nav-item"><i class="fas fa-edit"></i> Exercícios</a>
+    <a href="/provas" class="nav-item"><i class="fas fa-file-alt"></i> Provas anteriores</a>
+    <a href="/material" class="nav-item"><i class="fas fa-plus-circle"></i> Material extra</a>
+    <a href="/perfil" class="nav-item"><i class="fas fa-user"></i> Perfil</a>
+    <div class="spacer"></div>
+    <a href="/login" class="nav-item logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+</nav>
         </aside>
 
         <main class="main-layout">
-            <div class="navigation-back">
-                <a href="/aulas" style="text-decoration: none; color: #9b6bff; font-weight: 600;">
-                    <i class="fas fa-arrow-left"></i> Voltar para a lista
-                </a>
-            </div>
+            <header class="header-top">
+                <div class="navigation-back">
+                    <a href="/aulas" style="text-decoration: none; color: #9b6bff; font-weight: 600;">
+                        <i class="fas fa-arrow-left"></i> Voltar para a lista de aulas
+                    </a>
+                </div>
+            </header>
 
             <section class="player-section">
                 <div class="video-wrapper">
@@ -41,41 +47,42 @@
                 </div>
                 
                 <div class="video-info-box">
-                    <h1>01. Adição e Subtração: Fundamentos</h1>
+                    <span class="status-tag">Em exibição</span>
+                    <h1 style="margin-top: 10px;">01. Adição e Subtração: Fundamentos</h1>
+                    <p style="color: #666; margin-top: 10px;">Professor: Carlos Silva</p>
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
                     <p>Nesta aula revisamos as propriedades da adição e como resolver problemas de subtração com reserva.</p>
-                    
-                 
                 </div>
             </section>
         </main>
 
         <aside class="right-column">
-            <div class="playlist-card">
-                <h4>Conteúdo da Disciplina</h4>
+            <div class="profile-card" style="text-align: center; margin-bottom: 30px;">
+                <div class="avatar-large" style="width: 80px; height: 80px; background: #eee; border-radius: 50%; margin: 0 auto 10px; overflow: hidden;">
+                    <img src="https://via.placeholder.com/80" alt="Avatar" style="width: 100%;">
+                </div>
+                <h3>Eduardo Costa</h3>
+                <span class="badge" style="color: #9b6bff; font-size: 14px;">Estudante</span>
+            </div>
+
+            <div class="calendar-card">
+                <h4 style="margin-bottom: 20px;">Playlist da Disciplina</h4>
                 <div class="playlist-items">
-                    <div class="playlist-item active">
-                        <div class="item-index">01</div>
+                    <div class="playlist-item active" style="background: #f0ebff; border-radius: 15px; padding: 15px; margin-bottom: 10px; border-left: 5px solid #9b6bff;">
                         <div class="item-info">
-                            <h5>Adição e Subtração</h5>
-                            <span>15:20</span>
-                        </div>
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-
-                    <div class="playlist-item">
-                        <div class="item-index">02</div>
-                        <div class="item-info">
-                            <h5>Multiplicação</h5>
-                            <span>22:10</span>
+                            <strong style="display: block; font-size: 14px;">01. Adição e Subtração</strong>
+                            <small style="color: #9b6bff;">Assistindo agora</small>
                         </div>
                     </div>
 
-                    <div class="playlist-item">
-                        <div class="item-index">03</div>
-                        <div class="item-info">
-                            <h5>Divisão Real</h5>
-                            <span>18:45</span>
-                        </div>
+                    <div class="playlist-item" style="padding: 15px; border-bottom: 1px solid #eee;">
+                        <strong style="display: block; font-size: 14px; color: #444;">02. Multiplicação</strong>
+                        <small style="color: #999;">22:10</small>
+                    </div>
+
+                    <div class="playlist-item" style="padding: 15px; border-bottom: 1px solid #eee;">
+                        <strong style="display: block; font-size: 14px; color: #444;">03. Divisão Real</strong>
+                        <small style="color: #999;">18:45</small>
                     </div>
                 </div>
             </div>

@@ -1,19 +1,35 @@
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+/* Variáveis de cores para manter o padrão */
+:root {
+    --purple-grad: linear-gradient(180deg, #9b6bff 0%, #6d39cf 100%);
+    --bg-light: #f8f9fe;
+    --white: #ffffff;
+}
 
-body { background-color: #f8f9fe; height: 100vh; overflow: hidden; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
 
-/* Força as 3 colunas: Sidebar (260px) | Player (1fr) | Playlist (320px) */
+body { 
+    background-color: var(--bg-light); 
+    height: 100vh; 
+    overflow: hidden; 
+}
+
+/* 1. Dashboard Container - O Grid de 3 Colunas idêntico à Tela Aulas */
 .dashboard-container { 
     display: grid;
-    grid-template-columns: 260px 1fr 320px;
+    grid-template-columns: 260px 1fr 320px; /* Sidebar | Player | Playlist */
     gap: 20px;
     height: 100vh;
     padding: 15px;
 }
 
-/* SIDEBAR ROXA IGUAL ÀS FOTOS */
+/* 2. Sidebar - Estilo Roxo igual à Foto */
 .sidebar-main {
-    background: linear-gradient(180deg, #9b6bff 0%, #6d39cf 100%) !important;
+    background: var(--purple-grad);
     border-radius: 30px;
     display: flex;
     flex-direction: column;
@@ -28,19 +44,36 @@ body { background-color: #f8f9fe; height: 100vh; overflow: hidden; }
     margin: 0 auto 50px; color: white; font-size: 40px;
 }
 
+.nav-menu { display: flex; flex-direction: column; height: 100%; }
+
 .nav-item {
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     padding: 15px 20px;
     display: flex; align-items: center;
     font-size: 15px;
+    transition: 0.3s;
     border-radius: 12px;
 }
 
-.nav-item.active { background: rgba(255, 255, 255, 0.2) !important; color: white !important; }
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white; 
+    font-weight: 600;
+}
 
-/* PLAYER E VÍDEO */
-.main-layout { overflow-y: auto; }
+.nav-item i { margin-right: 15px; width: 20px; text-align: center; }
+.spacer { flex-grow: 1; }
+
+.logout { color: rgba(255, 255, 255, 0.5); }
+
+/* 3. Coluna Central - Player e Info */
+.main-layout { 
+    overflow-y: auto; 
+    padding-right: 10px; 
+}
+
+.navigation-back { margin-bottom: 20px; padding: 10px 0; }
 
 .video-wrapper {
     width: 100%;
@@ -48,16 +81,74 @@ body { background-color: #f8f9fe; height: 100vh; overflow: hidden; }
     background: #000;
     border-radius: 25px;
     overflow: hidden;
-    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .video-wrapper iframe { width: 100%; height: 100%; border: none; }
 
-/* PLAYLIST NA DIREITA */
-.playlist-card {
-    background: white;
+.video-info-box {
+    background: var(--white);
+    margin-top: 20px;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.video-info-box h1 { font-size: 24px; color: #333; margin-bottom: 10px; }
+.video-info-box p { color: #666; line-height: 1.6; }
+
+/* 4. Coluna Direita - Playlist com estilo Card */
+.right-column {
+    background: var(--white);
     border-radius: 30px;
     padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     height: 100%;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
+
+.playlist-card h4 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.playlist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 18px;
+    background: #fcfcfc;
+    border: 1px solid #f0f0f0;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.playlist-item.active {
+    background: #f0ebff;
+    border-color: #9b6bff;
+}
+
+.item-index {
+    width: 30px;
+    font-weight: bold;
+    color: #9b6bff;
+}
+
+.item-info h5 { font-size: 14px; color: #333; }
+.item-info span { font-size: 12px; color: #999; }
+
+.playlist-item i {
+    margin-left: auto;
+    color: #9b6bff;
+    font-size: 20px;
+}
+
+/* Custom Scrollbar para manter o visual limpo */
+.main-layout::-webkit-scrollbar { width: 6px; }
+.main-layout::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 10px; }
