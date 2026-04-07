@@ -1,83 +1,155 @@
 package com.ifsp.Auroraprojeto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AuroraController {
 
-    // Login e Cadastro
+    @Autowired
+    private UsuarioService usuarioService;
+
+
+    // ================= LOGIN =================
+
     @GetMapping("/login")
-    public String login() {
-        return "Login"; // Verifique se o arquivo se chama Login.html
+    public String telaLogin(HttpSession session) {
+
+        // se já estiver logado, vai direto para início
+        if (usuarioLogado(session)) {
+            return "redirect:/inicio";
+        }
+
+        return "Login";
     }
+
+      @PostMapping("/login")
+      public String login(@RequestParam String email,
+                    @RequestParam String senha,
+                    HttpSession session) {
+
+    Usuario usuario = usuarioService.login(email, senha);
+
+    if (usuario != null) {
+        session.setAttribute("usuario", usuario);
+        return "redirect:/inicio";
+    }
+
+    return "redirect:/login?erro=true";
+}
+
+
+    // ================= CADASTRO =================
 
     @GetMapping("/cadastro")
-    public String cadastro() {
-        return "Cadastro"; // Se o erro 500 continuar, mude para "cadastro" e renomeie o arquivo
+    public String telaCadastro(HttpSession session) {
+
+        if (usuarioLogado(session)) {
+            return "redirect:/inicio";
+        }
+
+        return "Cadastro";
     }
 
-    // Telas do Dashboard (Roxas)
-    @GetMapping("/inicio")
-    public String inicio() {
-        return "TelaInicio"; // Ajustado para o nome que aparece na sua pasta de templates
+    @PostMapping("/cadastro")
+    public String cadastro(@ModelAttribute Usuario usuario,
+                           HttpSession session) {
+
+        boolean sucesso = usuarioService.cadastrar(usuario);
+
+        if (sucesso) {
+
+            // cria sessão automaticamente após cadastro
+            session.setAttribute("usuario", usuario);
+
+            return "redirect:/inicio";
+        }
+
+        return "redirect:/cadastro?erro=email";
     }
+
+
+    // ================= LOGOUT =================
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+
+        session.invalidate();
+
+        return "redirect:/login";
+    }
+
+
+    // ================= DASHBOARD =================
+
+    @GetMapping("/inicio")
+    public String inicio(HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        return "TelaInicio";
+    }
+
 
     @GetMapping("/disciplinas")
-    public String disciplinas() {
+    public String disciplinas(HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
         return "TelaDisciplinas";
     }
 
+
     @GetMapping("/exercicios")
-    public String exercicios() {
+    public String exercicios(HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
         return "TelaExercicios";
     }
 
+
     @GetMapping("/provas")
-    public String provas() {
+    public String provas(HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
         return "TelaProvas";
     }
 
+
     @GetMapping("/material")
-    public String material() {
+    public String material(HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
         return "TelaMaterialExtra";
     }
 
+
     @GetMapping("/perfil")
-    public String perfil() {
+    public String perfil(HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
         return "PerfilAluno";
-    }
-    @GetMapping("/aulas")
-    public String paginaAulas() {
-        // Retorna o nome do arquivo HTML (sem o .html)
-        return "TelaAulas";
-        
-}
-
-@GetMapping("/assistir")
-public String assistir() {
-    return "TelaAssistir"; // Certifique-se de que o arquivo seja Assistir.html
-}
-
-// --- ROTAS DO ADMINISTRADOR ---
-
-    @GetMapping("/admin")
-    public String adminPrincipal() {
-        return "admin-dashboard"; // Abre o arquivo admin.html
-    }
-
-    @GetMapping("/admin/conteudo")
-    public String adminConteudo() {
-        return "gerenciar-aulas"; // Abre o arquivo gerenciar-aulas.html
-    }
-
-    @GetMapping("/admin/provas")
-    public String adminProvas() {
-        return "upload-provas"; // Abre o arquivo upload-provas.html
-    }
-
-    @GetMapping("/admin/materiais")
-    public String adminMateriais() {
-        return "materiais-extras"; // Abre o arquivo materiais-extras.html
     }
 }

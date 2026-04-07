@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurora - Exercícios</title>
+
     <link rel="stylesheet" href="TelaExercicios.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <div class="dashboard-container">
-        <aside class="sidebar-main">
+        <aside class="sidebar-exercicios">
             <div class="logo-section">
                 <div class="icon-wrapper">
                     <i class="fas fa-graduation-cap" aria-hidden="true"></i>
@@ -27,89 +29,41 @@
             </nav>
         </aside>
 
-        <main class="main-layout">
-            <header class="header-top">
-                <div class="search-global">
-                    <input type="text" placeholder="Pesquisar exercícios...">
-                </div>
-                
-                <div class="user-info-header">
-                    <div class="user-profile">
-                        <img src="https://via.placeholder.com/40" alt="Avatar de Eduardo Costa" class="avatar">
-                        <div class="user-text">
-                            <span class="user-name">Eduardo Costa</span>
-                            <span class="user-status">Online</span>
-                        </div>
-                    </div>
-                    <div class="top-icons">
-                        <i class="far fa-bell" title="Notificações"></i>
-                        <i class="fas fa-cog" title="Configurações"></i>
-                    </div>
-                </div>
-            </header>
+    <!-- Conteúdo principal -->
+    <main class="main-layout">
 
-            <section class="content-body">
-                <h1 class="title-page">Exercícios</h1>
-                
-                <div class="exercise-list">
-                    <div class="exercise-bar">
-                        <span class="exercise-name">ENEM - MATEMÁTICA</span>
-                        <span class="exercise-count">50</span>
-                    </div>
+        <header class="header-top">
+            <input type="text" placeholder="Pesquisar exercícios...">
 
-                    <div class="exercise-bar">
-                        <span class="exercise-name">ENEM - PORTUGUÊS</span>
-                        <span class="exercise-count">25</span>
-                    </div>
-
-                    <div class="exercise-bar">
-                        <span class="exercise-name">UERJ - PORTUGUÊS</span>
-                        <span class="exercise-count">75</span>
-                    </div>
-
-                    <div class="exercise-bar">
-                        <span class="exercise-name">ENEM - PORTUGUÊS</span>
-                        <span class="exercise-count">36</span>
-                    </div>
-
-                    <div class="exercise-bar">
-                        <span class="exercise-name">ENEM - PORTUGUÊS</span>
-                        <span class="exercise-count">10</span>
-                    </div>
-
-                    <div class="exercise-bar">
-                        <span class="exercise-name">ENEM - PORTUGUÊS</span>
-                        <span class="exercise-count">85</span>
-                    </div>
-
-                    <div class="exercise-bar">
-                        <span class="exercise-name">ENEM - PORTUGUÊS</span>
-                        <span class="exercise-count">50</span>
-                    </div>
-
-                    <div class="exercise-bar">
-                        <span class="exercise-name">ENEM - PORTUGUÊS</span>
-                        <span class="exercise-count">27</span>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <aside class="right-sidebar-padrao" style="width: 320px; padding: 20px;">
-            <div class="profile-card-mini" style="text-align: center; background: white; border-radius: 25px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                <div class="avatar-large">
-                    <img src="https://via.placeholder.com/100" alt="Foto de Eduardo Costa" style="border-radius: 50%;">
-                </div>
-                <h3 style="margin-top: 15px;">Eduardo Costa</h3>
-                <span class="badge" style="background: #f3f4f6; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-top: 5px;">Estudante</span>
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/40" alt="Avatar">
+                <span>Eduardo Costa</span>
             </div>
+        </header>
 
-            <div class="calendar-mini" style="margin-top: 25px; background: white; border-radius: 25px; padding: 25px;">
-                <h4 style="margin-bottom: 15px;">Calendário</h4>
-                <p style="font-size: 0.85rem; border-bottom: 1px solid #eee; padding: 8px 0;"><strong>09/11</strong> - ENEM</p>
-                <p style="font-size: 0.85rem; padding: 8px 0;"><strong>23/11</strong> - FUVEST</p>
+        <section class="content-body">
+            <h1>Exercícios</h1>
+
+            <div class="exercise-list">
+                <div class="exercise-bar">
+                    <span>ENEM - Matemática</span>
+                    <span>50</span>
+                </div>
+
+                <div class="exercise-bar">
+                    <span>ENEM - Português</span>
+                    <span>25</span>
+                </div>
+
+                <div class="exercise-bar">
+                    <span>UERJ - Português</span>
+                    <span>75</span>
+                </div>
             </div>
-        </aside>
-    </div>
+        </section>
+
+    </main>
+
+</div>
 </body>
 </html>
