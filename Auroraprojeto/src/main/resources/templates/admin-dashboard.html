@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Admin - Painel Geral</title>
+    <link rel="stylesheet" href="AdminStyle.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar-main">
+            <div class="logo-section">
+                <div class="icon-wrapper"><i class="fas fa-user-shield"></i></div>
+            </div>
+            <nav class="nav-menu">
+                <a href="/admin" class="nav-item active"><i class="fas fa-chart-line"></i> Painel Geral</a>
+                <a href="/admin/conteudo" class="nav-item"><i class="fas fa-video"></i> Gerenciar Aulas</a>
+                <a href="/admin/provas" class="nav-item"><i class="fas fa-file-upload"></i> Upload Provas</a>
+                <a href="/admin/materiais" class="nav-item"><i class="fas fa-folder-plus"></i> Materiais Extras</a>
+            </nav>
+            <div class="spacer"></div>
+            <div class="sidebar-footer-actions">
+                <a href="/login" class="footer-item">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-layout">
+            <header class="header-top">
+                <h1>Painel de Controle</h1>
+                <p>Olá, Admin! O que vamos gerenciar hoje?</p>
+            </header>
+
+            <section class="admin-form-section">
+                <div class="video-info-box">
+                    <h3><i class="fas fa-plus-circle"></i> Adicionar Novo Vídeo</h3>
+                    <form class="admin-form">
+                        <div class="form-group">
+                            <label>Título do Vídeo/Aula</label>
+                            <input type="text" placeholder="Ex: 05. Interpretação de Texto">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Link do YouTube (Embed URL)</label>
+                                <input type="text" placeholder="https://youtube.com/embed/...">
+                            </div>
+                            <div class="form-group">
+                                <label>Duração (MM:SS)</label>
+                                <input type="text" placeholder="Ex: 22:15">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição do Conteúdo (Opcional)</label>
+                            <textarea rows="3" placeholder="O que o aluno vai aprender nesta aula?"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Publicar Vídeo</button>
+                    </form>
+                </div>
+
+                <div class="video-info-box" style="margin-top: 20px;">
+                    <h3><i class="fas fa-file-pdf"></i> Envio de Material</h3>
+                    <div class="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Arraste arquivos PDF ou clique para selecionar</p>
+                        <input type="file" id="file-exam" style="display: none;">
+                        <label for="file-exam" class="btn-secondary">Selecionar Arquivo</label>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="right-column">
+            <div class="profile-card">
+                <div class="avatar-large">
+                    <img src="https://via.placeholder.com/100" alt="Admin">
+                </div>
+                <h3>Super Admin</h3>
+                <span class="badge">Acesso Total</span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <strong>124</strong>
+                    <span>Vídeos</span>
+                </div>
+                <div class="stat-card">
+                    <strong>45</strong>
+                    <span>Provas</span>
+                </div>
+            </div>
+
+            <div class="calendar-card" style="margin-top: 20px;">
+                <h4>Últimas Ações</h4>
+                <ul class="admin-list">
+                    <li><i class="fas fa-check-circle"></i> Aula 04 adicionada</li>
+                    <li><i class="fas fa-check-circle"></i> Simulado atualizado</li>
+                    <li><i class="fas fa-check-circle"></i> Perfil alterado</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+</body>
+</html>

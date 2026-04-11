@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Admin - Gerenciar Aulas</title>
+    <link rel="stylesheet" href="/AdminStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar-main">
+            <div class="logo-section">
+                <div class="icon-wrapper"><i class="fas fa-user-shield"></i></div>
+            </div>
+            <nav class="nav-menu">
+                <a href="/admin" class="nav-item"><i class="fas fa-chart-line"></i> Painel Geral</a>
+                <a href="/admin/conteudo" class="nav-item active"><i class="fas fa-video"></i> Gerenciar Aulas</a>
+                <a href="/admin/provas" class="nav-item"><i class="fas fa-file-upload"></i> Upload Provas</a>
+                <a href="/admin/materiais" class="nav-item"><i class="fas fa-folder-plus"></i> Materiais Extras</a>
+            </nav>
+            <div class="spacer"></div>
+            <div class="sidebar-footer-actions">
+                <a href="/login" class="footer-item"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                <a href="/admin" class="admin-gear-btn"><i class="fas fa-cog"></i></a>
+            </div>
+        </aside>
+
+        <main class="main-layout">
+            <header class="header-top">
+                <h1>Gerenciar Aulas</h1>
+                <p>Visualize, edite ou remova as aulas cadastradas.</p>
+            </header>
+
+            <section class="admin-form-section">
+                <div class="video-info-box">
+                    <div class="table-header" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <h3>Aulas Publicadas</h3>
+                        <input type="text" placeholder="Filtrar aula..." style="width: 200px; padding: 5px 10px;">
+                    </div>
+                    
+                    <div class="lesson-list">
+                        <div class="lesson-item" style="display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="background: #f0ebff; color: #9b6bff; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div>
+                                    <strong style="display: block;">01. Introdução à Álgebra</strong>
+                                    <span style="font-size: 12px; color: #999;">Duração: 12:40 | Professor: Carlos</span>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="btn-action edit" title="Editar"><i class="fas fa-edit"></i></button>
+                                <button class="btn-action delete" title="Excluir"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="lesson-item" style="display: flex; align-items: center; justify-content: space-between; padding: 15px; border-bottom: 1px solid #eee;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="background: #f0ebff; color: #9b6bff; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div>
+                                    <strong style="display: block;">02. Funções de 1º Grau</strong>
+                                    <span style="font-size: 12px; color: #999;">Duração: 18:15 | Professor: Carlos</span>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="btn-action edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-action delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="right-column">
+            <div class="profile-card">
+                <div class="avatar-large">
+                    <img src="https://via.placeholder.com/100" alt="Admin">
+                </div>
+                <h3>Controle de Aulas</h3>
+                <span class="badge">Status do Servidor: OK</span>
+            </div>
+
+            <div class="calendar-card" style="margin-top: 20px;">
+                <h4>Dicas de Admin</h4>
+                <p style="font-size: 13px; color: #666; line-height: 1.5;">
+                    Ao excluir uma aula, ela será removida imediatamente da visualização dos alunos. Certifique-se de ter um backup do link.
+                </p>
+            </div>
+        </aside>
+    </div>
+
+</body>
+</html>

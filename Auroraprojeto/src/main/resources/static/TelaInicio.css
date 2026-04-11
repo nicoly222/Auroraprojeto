@@ -6,29 +6,86 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-body { background-color: var(--bg-light); color: #333; }
+body { background-color: var(--bg-light); color: #333; height: 100vh; overflow: hidden; }
 
 .dashboard-container { display: flex; height: 100vh; padding: 15px; }
 
-/* SIDEBAR PRINCIPAL */
+/* 1. SIDEBAR ESQUERDA */
 .sidebar-main {
-    width: 240px; background: var(--purple-grad); border-radius: 25px;
-    display: flex; flex-direction: column; padding: 30px 15px;
+    width: 260px;
+    min-width: 260px;
+    background: var(--purple-grad);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    height: 100%;
 }
-.icon-wrapper {
-    background: rgba(255, 255, 255, 0.2); width: 70px; height: 70px;
-    border-radius: 20px; display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 40px; color: white; font-size: 35px;
+
+.logo-section .icon-wrapper {
+    background: rgba(255, 255, 255, 0.2);
+    width: 80px; height: 80px; border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 50px; color: white; font-size: 40px;
 }
+
+.nav-menu { display: flex; flex-direction: column; }
+
 .nav-item {
-    color: rgba(255, 255, 255, 0.7); text-decoration: none; padding: 12px 15px;
-    display: flex; align-items: center; font-size: 14px; transition: 0.3s;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 15px 20px;
+    display: flex; align-items: center;
+    font-size: 15px;
+    transition: 0.3s;
 }
-.nav-item.active { background: rgba(255, 255, 255, 0.15); color: white; border-radius: 10px; }
-.nav-item i { margin-right: 12px; width: 18px; }
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white; border-radius: 12px; font-weight: 600;
+}
+
+.nav-item i { margin-right: 15px; width: 20px; text-align: center; }
+
+/* Empurra o footer para o final */
 .spacer { flex-grow: 1; }
 
-/* ÁREA PRINCIPAL */
+/* --- RODAPÉ DA SIDEBAR (BOTÕES LADO A LADO) --- */
+.sidebar-footer-actions {
+    display: flex;
+    justify-content: space-between; /* Sair na esquerda, Engrenagem na direita */
+    align-items: center;
+    padding: 20px 10px 10px 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+}
+
+.footer-item {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.footer-item:hover { color: white; }
+
+.admin-gear-btn {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.admin-gear-btn:hover {
+    color: white;
+    transform: rotate(45deg);
+}
+
+
+/* 2. ÁREA PRINCIPAL */
 .main-layout { flex: 1; padding: 10px 30px; overflow-y: auto; }
 
 .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
@@ -69,13 +126,7 @@ body { background-color: var(--bg-light); color: #333; }
 .profile-main { text-align: center; }
 .avatar-large { position: relative; width: 100px; margin: 0 auto 15px; }
 .avatar-large img { width: 100px; height: 100px; border-radius: 50%; background: #eee; }
-.btn-add-photo {
-    position: absolute; bottom: 0; right: 0; width: 30px; height: 30px;
-    background: black; color: white; border: none; border-radius: 50%; cursor: pointer;
-}
 .badge { background: #f0f0f0; padding: 5px 15px; border-radius: 15px; font-size: 12px; color: #666; }
-
-.location-input { background: #f0f0f0; padding: 10px; border-radius: 10px; font-size: 12px; color: #999; margin-top: 10px; }
 
 .calendar-card h4 { margin-bottom: 15px; font-size: 14px; }
 .event-list { list-style: none; font-size: 12px; }

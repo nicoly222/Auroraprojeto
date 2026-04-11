@@ -151,15 +151,11 @@ public class AuroraController {
         }
 
         return "PerfilAluno";
+
     }
-
-
-    // ================= VERIFICAR SESSÃO =================
 
     private boolean usuarioLogado(HttpSession session) {
-
-        return session.getAttribute("usuario") != null;
-
-    }
-
+    return session.getAttribute("usuario") != null;
+   }
+   
 }
