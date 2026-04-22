@@ -35,6 +35,7 @@ public class AuroraController {
         return "Login";
     }
 
+
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String senha,
@@ -43,12 +44,15 @@ public class AuroraController {
         Usuario usuario = usuarioService.login(email, senha);
 
         if (usuario != null) {
+
             session.setAttribute("usuario", usuario);
+
             return "redirect:/inicio";
         }
 
         return "redirect:/login?erro=true";
     }
+
 
 
     // ================= CADASTRO =================
@@ -62,6 +66,7 @@ public class AuroraController {
 
         return "Cadastro";
     }
+
 
     @PostMapping("/cadastro")
     public String cadastro(@ModelAttribute Usuario usuario,
@@ -80,6 +85,7 @@ public class AuroraController {
     }
 
 
+
     // ================= LOGOUT =================
 
     @GetMapping("/logout")
@@ -89,6 +95,7 @@ public class AuroraController {
 
         return "redirect:/login";
     }
+
 
 
     // ================= DASHBOARD =================
@@ -104,6 +111,9 @@ public class AuroraController {
     }
 
 
+
+    // ================= DISCIPLINAS =================
+
     @GetMapping("/disciplinas")
     public String disciplinas(HttpSession session) {
 
@@ -114,6 +124,9 @@ public class AuroraController {
         return "TelaDisciplinas";
     }
 
+
+
+    // ================= EXERCÍCIOS =================
 
     @GetMapping("/exercicios")
     public String exercicios(HttpSession session) {
@@ -126,21 +139,25 @@ public class AuroraController {
     }
 
 
+
     // ================= PROVAS =================
 
     @GetMapping("/provas")
-    public String provas(HttpSession session, Model model) {
+    public String provas(HttpSession session,
+                         Model model) {
 
         if (!usuarioLogado(session)) {
             return "redirect:/login";
         }
 
-        List<Conteudo> provas = conteudoRepository.findByTipo(TipoConteudo.PROVA);
+        List<Conteudo> provas =
+                conteudoRepository.findByTipo(TipoConteudo.PROVA);
 
         model.addAttribute("provas", provas);
 
         return "TelaProvas";
     }
+
 
 
     // ================= MATERIAL EXTRA =================
@@ -156,79 +173,254 @@ public class AuroraController {
     }
 
 
+
     // ================= PERFIL =================
 
     @GetMapping("/perfil")
-    public String perfil(HttpSession session) {
+    public String perfil(HttpSession session,
+                         Model model) {
 
         if (!usuarioLogado(session)) {
             return "redirect:/login";
         }
 
+        Usuario usuario =
+                (Usuario) session.getAttribute("usuario");
+
+        model.addAttribute("usuario", usuario);
+
         return "PerfilAluno";
     }
 
+
+
+   // ================= SALVAR PERFIL =================
+
+@PostMapping("/salvarPerfil")
+public String salvarPerfil(@ModelAttribute Usuario usuarioAtualizado,
+                           HttpSession session) {
+
+    if (!usuarioLogado(session)) {
+        return "redirect:/login";
+    }
+
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+    usuario.setNome(usuarioAtualizado.getNome());
+    usuario.setEmail(usuarioAtualizado.getEmail());
+    usuario.setCurso(usuarioAtualizado.getCurso());
+    usuario.setCidade(usuarioAtualizado.getCidade());
+    usuario.setTelefone(usuarioAtualizado.getTelefone());
+
+    usuarioService.salvar(usuario);
+
+    session.setAttribute("usuario", usuario);
+
+    return "redirect:/perfil";
+}
+
+
     // ================= ADMIN =================
 
-@GetMapping("/admin")
-public String admin(HttpSession session) {
+    @GetMapping("/admin")
+    public String admin(HttpSession session) {
 
-    if (!usuarioLogado(session)) {
-        return "redirect:/login";
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        return "admin-dashboard";
     }
 
-    return "admin-dashboard";
-}
 
 
-// ================= GERENCIAR AULAS =================
+    // ================= GERENCIAR AULAS =================
 
-@GetMapping("/admin/conteudo")
-public String gerenciarAulas(HttpSession session, Model model) {
+    @GetMapping("/admin/conteudo")
+    public String gerenciarAulas(HttpSession session,
+                                 Model model) {
 
-    if (!usuarioLogado(session)) {
-        return "redirect:/login";
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        List<Conteudo> aulas =
+                conteudoRepository.findByTipo(TipoConteudo.VIDEO);
+
+        model.addAttribute("aulas", aulas);
+
+        return "gerenciar-aulas";
     }
 
-    List<Conteudo> aulas = conteudoRepository.findByTipo(TipoConteudo.VIDEO);
-
-    model.addAttribute("aulas", aulas);
-
-    return "gerenciar-aulas";
-}
 
 
-// ================= NOVO CONTEÚDO =================
+    // ================= SALVAR CONTEÚDO =================
 
-@GetMapping("/admin/conteudo/novo")
-public String novoConteudo(HttpSession session) {
+    @PostMapping("/salvarconteudo")
+    public String salvarConteudo(@ModelAttribute Conteudo conteudo,
+                                 HttpSession session) {
 
-    if (!usuarioLogado(session)) {
-        return "redirect:/login";
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        conteudoRepository.save(conteudo);
+
+        return "redirect:/admin/conteudo";
     }
 
-    return "admin-dashboard";
-}
 
 
-// ================= EXCLUIR AULA =================
+    // ================= NOVO CONTEÚDO =================
 
-@GetMapping("/admin/excluir/{id}")
-public String excluirAula(@PathVariable Long id, HttpSession session) {
+    @GetMapping("/admin/conteudo/novo")
+    public String novoConteudo(HttpSession session) {
 
-    if (!usuarioLogado(session)) {
-        return "redirect:/login";
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        return "admin-dashboard";
     }
 
-    conteudoRepository.deleteById(id);
-
-    return "redirect:/admin/conteudo";
-}
 
 
-    // ================= VERIFICA SESSÃO =================
+    // ================= EXCLUIR AULA =================
+
+    @GetMapping("/admin/excluir/{id}")
+    public String excluirAula(@PathVariable Long id,
+                              HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        conteudoRepository.deleteById(id);
+
+        return "redirect:/admin/conteudo";
+    }
+
+
+
+    // ================= MATEMÁTICA BÁSICO =================
+
+    @GetMapping("/matematica-basico")
+    public String matematicaBasico(Model model,
+                                   HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        List<Conteudo> aulas =
+                conteudoRepository.findByDisciplinaAndNivel(
+                        Disciplina.MATEMATICA,
+                        "Básico"
+                );
+
+        model.addAttribute("aulas", aulas);
+
+        return "TelaAulas";
+    }
+
+
+
+    // ================= MATEMÁTICA VESTIBULAR =================
+
+    @GetMapping("/matematica-vestibular")
+    public String matematicaVestibular(Model model,
+                                       HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        List<Conteudo> aulas =
+                conteudoRepository.findByDisciplinaAndNivel(
+                        Disciplina.MATEMATICA,
+                        "Vestibular"
+                );
+
+        model.addAttribute("aulas", aulas);
+
+        return "TelaAulas";
+    }
+
+
+
+    // ================= PORTUGUÊS BÁSICO =================
+
+    @GetMapping("/portugues-basico")
+    public String portuguesBasico(Model model,
+                                  HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        List<Conteudo> aulas =
+                conteudoRepository.findByDisciplinaAndNivel(
+                        Disciplina.PORTUGUES,
+                        "Básico"
+                );
+
+        model.addAttribute("aulas", aulas);
+
+        return "TelaAulas";
+    }
+
+
+
+    // ================= PORTUGUÊS VESTIBULAR =================
+
+    @GetMapping("/portugues-vestibular")
+    public String portuguesVestibular(Model model,
+                                      HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        List<Conteudo> aulas =
+                conteudoRepository.findByDisciplinaAndNivel(
+                        Disciplina.PORTUGUES,
+                        "Vestibular"
+                );
+
+        model.addAttribute("aulas", aulas);
+
+        return "TelaAulas";
+    }
+
+
+
+    // ================= PORTUGUÊS ENSINO MÉDIO =================
+
+    @GetMapping("/portugues-ensino-medio")
+    public String portuguesEnsinoMedio(Model model,
+                                       HttpSession session) {
+
+        if (!usuarioLogado(session)) {
+            return "redirect:/login";
+        }
+
+        List<Conteudo> aulas =
+                conteudoRepository.findByDisciplinaAndNivel(
+                        Disciplina.PORTUGUES,
+                        "Ensino Médio"
+                );
+
+        model.addAttribute("aulas", aulas);
+
+        return "TelaAulas";
+    }
+
+
+
+    // ================= VERIFICAR SESSÃO =================
 
     private boolean usuarioLogado(HttpSession session) {
+
         return session.getAttribute("usuario") != null;
     }
 

@@ -8,4 +8,9 @@ public interface ConteudoRepository extends JpaRepository<Conteudo, Long> {
 
     List<Conteudo> findByTipo(TipoConteudo tipo);
 
+    List<Conteudo> findByDisciplinaAndNivel(
+            Disciplina disciplina,
+            String nivel
+    );
+
 }

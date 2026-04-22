@@ -34,4 +34,10 @@ public class UsuarioService {
 
         return null;
     }
+
+    public void salvar(Usuario usuario){
+
+        usuarioRepository.save(usuario);
+
+    }
 }

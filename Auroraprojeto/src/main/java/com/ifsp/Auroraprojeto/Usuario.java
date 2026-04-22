@@ -18,6 +18,12 @@ public class Usuario {
     private String email;
     private String senha;
 
+    private String curso;
+    private String cidade;
+    private String telefone;
+
+    // ================= ID =================
+
     public Long getId() {
         return id;
     }
@@ -25,6 +31,8 @@ public class Usuario {
     public void setId(Long id) {
         this.id = id;
     }
+
+    // ================= NOME =================
 
     public String getNome() {
         return nome;
@@ -34,7 +42,7 @@ public class Usuario {
         this.nome = nome;
     }
 
-
+    // ================= EMAIL =================
 
     public String getEmail() {
         return email;
@@ -44,7 +52,7 @@ public class Usuario {
         this.email = email;
     }
 
- 
+    // ================= SENHA =================
 
     public String getSenha() {
         return senha;
@@ -54,4 +62,33 @@ public class Usuario {
         this.senha = senha;
     }
 
+    // ================= CURSO =================
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    // ================= CIDADE =================
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    // ================= TELEFONE =================
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 }

@@ -8,14 +8,29 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
- @Entity
+@Entity
 @Table(name = "conteudos")
 public class Conteudo {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String titulo;
+
+    private String descricao;
+
+    private String urlLink;
+
+    private String nivel;
+
+    @Enumerated(EnumType.STRING)
+    private Disciplina disciplina;
+
+    @Enumerated(EnumType.STRING)
+    private TipoConteudo tipo;
+
+    // GETTERS E SETTERS
 
     public Long getId() {
         return id;
@@ -25,7 +40,6 @@ public class Conteudo {
         this.id = id;
     }
 
-    private String titulo;
     public String getTitulo() {
         return titulo;
     }
@@ -34,7 +48,6 @@ public class Conteudo {
         this.titulo = titulo;
     }
 
-    private String descricao;
     public String getDescricao() {
         return descricao;
     }
@@ -43,15 +56,35 @@ public class Conteudo {
         this.descricao = descricao;
     }
 
-    private String urlLink; // Link do YouTube ou PDF no Drive
+    public String getUrlLink() {
+        return urlLink;
+    }
 
-    @Enumerated(EnumType.STRING)
-    private Disciplina disciplina; // MATEMATICA ou PORTUGUES
+    public void setUrlLink(String urlLink) {
+        this.urlLink = urlLink;
+    }
 
-    @Enumerated(EnumType.STRING)
-    private TipoConteudo tipo; // VIDEO, PROVA, GABARITO
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
 
-   
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public TipoConteudo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoConteudo tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
 }
-    
-
