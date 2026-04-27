@@ -11,7 +11,7 @@
 
 <body>
     <div class="dashboard-container">
-        <aside class="sidebar-exercicios">
+        <aside class="sidebar-main">
             <div class="logo-section">
                 <div class="icon-wrapper">
                     <i class="fas fa-graduation-cap" aria-hidden="true"></i>
@@ -32,15 +32,21 @@
     <!-- Conteúdo principal -->
     <main class="main-layout">
 
-        <header class="header-top">
-            <input type="text" placeholder="Pesquisar exercícios...">
+       <header class="header-top">
 
-            <div class="user-profile">
-                <img src="https://via.placeholder.com/40" alt="Avatar">
-                <span>Eduardo Costa</span>
-            </div>
-        </header>
+    <div class="search-global">
+        <input type="text" placeholder="Pesquisar exercícios...">
+    </div>
 
+    <div class="user-profile">
+        <img src="https://via.placeholder.com/40"
+             alt="Avatar"
+             class="avatar">
+
+        <span th:text="${usuario.nome}"></span>
+    </div>
+
+</header>
         <section class="content-body">
             <h1>Exercícios</h1>
 

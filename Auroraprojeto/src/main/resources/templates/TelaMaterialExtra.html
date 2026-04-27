@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"></html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +37,7 @@
                     <div class="user-profile">
                         <img src="https://via.placeholder.com/40" alt="Avatar de Eduardo Costa" class="avatar">
                         <div class="user-text">
-                            <span class="user-name">Eduardo Costa</span>
+                            <span th:text="${usuario.nome}"></span>
                             <span class="user-status">Online</span>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                     <img src="https://via.placeholder.com/100" alt="Eduardo Costa">
                     <button type="button" class="btn-add-photo">+</button>
                 </div>
-                <h3>Eduardo Costa</h3>
+                <h3 th:text="${usuario.nome}"></h3>
                 <span class="badge">Estudante</span>
             </div>
             

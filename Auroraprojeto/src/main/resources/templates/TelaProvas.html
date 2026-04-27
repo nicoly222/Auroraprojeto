@@ -37,7 +37,7 @@
                     <div class="user-profile">
                         <img src="https://via.placeholder.com/40" alt="Avatar de Eduardo Costa" class="avatar">
                         <div class="user-text">
-                            <span class="user-name">Eduardo Costa</span>
+                            <span th:text="${usuario.nome}"></span>
                             <span class="user-status">Online</span>
                         </div>
                     </div>
@@ -94,9 +94,9 @@
         <aside class="right-sidebar-padrao" style="width: 300px; padding: 20px;">
             <div class="profile-card-mini" style="text-align: center; background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <div class="avatar-large">
-                    <img src="https://via.placeholder.com/100" alt="Eduardo Costa" style="border-radius: 50%;">
+                    <img src="https://via.placeholder.com/100"  style="border-radius: 50%;">
                 </div>
-                <h3 style="margin-top: 10px;">Eduardo Costa</h3>
+                <h3 style="margin-top: 10px;" th:text="${usuario.nome}"></h3>
                 <span class="badge" style="background: #f0f0f0; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem;">Estudante</span>
             </div>
             

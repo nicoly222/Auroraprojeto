@@ -101,25 +101,33 @@ public class AuroraController {
     // ================= DASHBOARD =================
 
     @GetMapping("/inicio")
-    public String inicio(HttpSession session) {
+public String inicio(HttpSession session,
+                     Model model) {
 
-        if (!usuarioLogado(session)) {
-            return "redirect:/login";
-        }
-
-        return "TelaInicio";
+    if (!usuarioLogado(session)) {
+        return "redirect:/login";
     }
 
+    Usuario usuario =
+            (Usuario) session.getAttribute("usuario");
+
+    model.addAttribute("usuario", usuario);
+
+    return "TelaInicio";
+}
 
 
     // ================= DISCIPLINAS =================
 
     @GetMapping("/disciplinas")
-    public String disciplinas(HttpSession session) {
+    public String disciplinas(HttpSession session, Model model) {
 
         if (!usuarioLogado(session)) {
             return "redirect:/login";
         }
+         Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+         model.addAttribute("usuario", usuario);
 
         return "TelaDisciplinas";
     }
@@ -129,11 +137,14 @@ public class AuroraController {
     // ================= EXERCÍCIOS =================
 
     @GetMapping("/exercicios")
-    public String exercicios(HttpSession session) {
+    public String exercicios(HttpSession session, Model model) {
 
         if (!usuarioLogado(session)) {
             return "redirect:/login";
         }
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+         model.addAttribute("usuario", usuario);
 
         return "TelaExercicios";
     }
@@ -149,6 +160,10 @@ public class AuroraController {
         if (!usuarioLogado(session)) {
             return "redirect:/login";
         }
+         Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+         model.addAttribute("usuario", usuario);
+
 
         List<Conteudo> provas =
                 conteudoRepository.findByTipo(TipoConteudo.PROVA);
@@ -163,11 +178,15 @@ public class AuroraController {
     // ================= MATERIAL EXTRA =================
 
     @GetMapping("/material")
-    public String material(HttpSession session) {
+    public String material(HttpSession session, Model model) {
 
         if (!usuarioLogado(session)) {
             return "redirect:/login";
         }
+         Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+         model.addAttribute("usuario", usuario);
+
 
         return "TelaMaterialExtra";
     }
@@ -414,6 +433,7 @@ public String salvarPerfil(@ModelAttribute Usuario usuarioAtualizado,
 
         return "TelaAulas";
     }
+
 
 
 
