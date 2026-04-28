@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuario")
@@ -21,9 +22,9 @@ public class Usuario {
     private String curso;
     private String cidade;
     private String telefone;
+    private String role;
 
     // ================= ID =================
-
     public Long getId() {
         return id;
     }
@@ -33,7 +34,6 @@ public class Usuario {
     }
 
     // ================= NOME =================
-
     public String getNome() {
         return nome;
     }
@@ -43,7 +43,6 @@ public class Usuario {
     }
 
     // ================= EMAIL =================
-
     public String getEmail() {
         return email;
     }
@@ -53,7 +52,6 @@ public class Usuario {
     }
 
     // ================= SENHA =================
-
     public String getSenha() {
         return senha;
     }
@@ -63,7 +61,6 @@ public class Usuario {
     }
 
     // ================= CURSO =================
-
     public String getCurso() {
         return curso;
     }
@@ -73,7 +70,6 @@ public class Usuario {
     }
 
     // ================= CIDADE =================
-
     public String getCidade() {
         return cidade;
     }
@@ -83,12 +79,20 @@ public class Usuario {
     }
 
     // ================= TELEFONE =================
-
     public String getTelefone() {
         return telefone;
     }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    // ================= ROLE (ADMIN / USER) =================
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
