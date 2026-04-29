@@ -83,3 +83,48 @@ body { background-color: var(--bg-light); height: 100vh; overflow: hidden; }
     padding: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
+/* Layout em Grade para as Aulas */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Estilo do Card de Vídeo */
+.video-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.thumb-container {
+    background: #f0f0f0;
+    border-bottom: 3px solid #9b6bff;
+}
+
+.video-meta {
+    padding: 15px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn-play {
+    background: #9b6bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}

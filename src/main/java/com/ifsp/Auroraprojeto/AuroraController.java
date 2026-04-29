@@ -1,5 +1,6 @@
 package com.ifsp.Auroraprojeto;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,7 @@ public class AuroraController {
         return "redirect:/login";
     }
 
-    // ================= ÁREA DO ALUNO (DASHBOARD E PERFIL) =================
+    // ================= ÁREA DO ALUNO =================
 
     @GetMapping("/inicio")
     public String inicio(HttpSession session, Model model) {
@@ -77,8 +78,6 @@ public class AuroraController {
         session.setAttribute("usuario", usuario);
         return "redirect:/perfil";
     }
-
-    // ================= NAVEGAÇÃO DO ALUNO (PÁGINAS QUE FALTAVAM) =================
 
     @GetMapping("/disciplinas")
     public String disciplinas(HttpSession session, Model model) {
@@ -110,7 +109,56 @@ public class AuroraController {
         return "TelaMaterialExtra";
     }
 
-    // ================= SISTEMA DO ADMIN ÚNICO =================
+    // ================= AULAS POR MATÉRIA =================
+
+  @GetMapping("/matematica-basico")
+public String matematicaBasico(Model model, HttpSession session) {
+    // 1. Verifica login
+    if (!usuarioLogado(session)) return "redirect:/login";
+
+    try {
+        // 2. Tenta buscar os dados
+        List<Conteudo> aulas = conteudoRepository.findByDisciplinaAndNivel(Disciplina.MATEMATICA, "Básico");
+        
+        // 3. Garante que a lista não seja nula (evita erro 500 no Thymeleaf)
+        model.addAttribute("aulas", aulas != null ? aulas : new ArrayList<Conteudo>());
+        model.addAttribute("usuario", session.getAttribute("usuario"));
+        
+        return "TelaAulas";
+    } catch (Exception e) {
+        // Se der erro aqui, o console do seu VS Code vai mostrar o motivo real
+        System.out.println("ERRO AO BUSCAR AULAS: " + e.getMessage());
+        return "redirect:/inicio"; // Te joga de volta pra home em vez de dar tela de erro
+    }
+}
+    @GetMapping("/matematica-vestibular")
+    public String matematicaVestibular(Model model, HttpSession session) {
+        if (!usuarioLogado(session)) return "redirect:/login";
+        List<Conteudo> aulas = conteudoRepository.findByDisciplinaAndNivel(Disciplina.MATEMATICA, "Vestibular");
+        model.addAttribute("aulas", aulas);
+        model.addAttribute("usuario", (Usuario) session.getAttribute("usuario"));
+        return "TelaAulas";
+    }
+
+    @GetMapping("/portugues-basico")
+    public String portuguesBasico(Model model, HttpSession session) {
+        if (!usuarioLogado(session)) return "redirect:/login";
+        List<Conteudo> aulas = conteudoRepository.findByDisciplinaAndNivel(Disciplina.PORTUGUES, "Básico");
+        model.addAttribute("aulas", aulas);
+        model.addAttribute("usuario", (Usuario) session.getAttribute("usuario"));
+        return "TelaAulas";
+    }
+
+    @GetMapping("/portugues-vestibular")
+    public String portuguesVestibular(Model model, HttpSession session) {
+        if (!usuarioLogado(session)) return "redirect:/login";
+        List<Conteudo> aulas = conteudoRepository.findByDisciplinaAndNivel(Disciplina.PORTUGUES, "Vestibular");
+        model.addAttribute("aulas", aulas);
+        model.addAttribute("usuario", (Usuario) session.getAttribute("usuario"));
+        return "TelaAulas";
+    }
+
+    // ================= SISTEMA DO ADMIN =================
 
     @GetMapping("/login-admin")
     public String loginAdmin(HttpSession session) {
@@ -137,9 +185,32 @@ public class AuroraController {
     @GetMapping("/admin/conteudo")
     public String gerenciarAulas(HttpSession session, Model model) {
         if (!adminLogado(session)) return "redirect:/login-admin";
-        List<Conteudo> aulas = conteudoRepository.findByTipo(TipoConteudo.VIDEO);
+        List<Conteudo> aulas = conteudoRepository.findAll(); // Busca tudo para gerenciar
         model.addAttribute("aulas", aulas);
         return "gerenciar-aulas";
+    }
+
+    // NOVA ROTA: Abre a tela de salvar conteúdo
+    @GetMapping("/admin/upload")
+    public String telaUpload(HttpSession session) {
+        if (!adminLogado(session)) return "redirect:/login-admin";
+        return "upload-conteudo";
+    }
+
+    // NOVA ROTA: Processa o salvamento do conteúdo
+    @PostMapping("/salvarconteudo")
+    public String salvarConteudo(@ModelAttribute Conteudo conteudo, HttpSession session) {
+        if (!adminLogado(session)) return "redirect:/login-admin";
+        conteudoRepository.save(conteudo);
+        return "redirect:/admin/conteudo"; // Volta para a lista após salvar
+    }
+
+    // NOVA ROTA: Excluir conteúdo
+    @GetMapping("/admin/excluir/{id}")
+    public String excluirConteudo(@PathVariable Long id, HttpSession session) {
+        if (!adminLogado(session)) return "redirect:/login-admin";
+        conteudoRepository.deleteById(id);
+        return "redirect:/admin/conteudo";
     }
 
     // ================= MÉTODOS AUXILIARES =================
