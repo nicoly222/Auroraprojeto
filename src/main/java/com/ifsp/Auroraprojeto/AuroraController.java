@@ -198,12 +198,15 @@ public String matematicaBasico(Model model, HttpSession session) {
     }
 
     // NOVA ROTA: Processa o salvamento do conteúdo
-    @PostMapping("/salvarconteudo")
-    public String salvarConteudo(@ModelAttribute Conteudo conteudo, HttpSession session) {
-        if (!adminLogado(session)) return "redirect:/login-admin";
-        conteudoRepository.save(conteudo);
-        return "redirect:/admin/conteudo"; // Volta para a lista após salvar
-    }
+   @PostMapping("/salvarconteudo")
+public String salvarConteudo(@ModelAttribute Conteudo conteudo, HttpSession session) {
+    if (!adminLogado(session)) return "redirect:/login-admin";
+    
+    // O Spring agora vai encontrar o 'urlLink' vindo do formulário
+    conteudoRepository.save(conteudo); 
+    
+    return "redirect:/admin/conteudo";
+}
 
     // NOVA ROTA: Excluir conteúdo
     @GetMapping("/admin/excluir/{id}")

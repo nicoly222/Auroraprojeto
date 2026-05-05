@@ -37,10 +37,9 @@
                     <form th:action="@{/salvarconteudo}" method="POST" class="admin-form">
                         
                         <div class="form-group">
-                            <label>Título do Conteúdo</label>
-                            <input type="text" name="titulo" placeholder="Ex: Aula 01 - Geometria Analítica" required>
-                        </div>
-
+    <label>Link (YouTube ou PDF)</label>
+    <input type="text" name="urlLink" placeholder="URL do conteúdo..." required>
+</div>
                         <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
                             <div class="form-group">
                                 <label>Disciplina</label>
