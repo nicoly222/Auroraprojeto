@@ -66,7 +66,12 @@ body { background-color: var(--bg-light); height: 100vh; overflow: hidden; }
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.video-wrapper iframe { width: 100%; height: 100%; border: none; }
+.video-wrapper iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Mantém o formato de cinema */
+    border: none;
+    border-radius: 15px;
+}
 
 .video-info-box {
     background: white;

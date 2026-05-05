@@ -38,18 +38,18 @@
             <p>Selecione uma aula para começar a estudar</p>
         </section>
 
-        <div class="video-grid">
+       <div class="video-grid">
     <div class="video-card" th:each="aula : ${aulas}">
         <div class="thumb-container">
-           <iframe th:if="${aula.urlLink != null}"
-        width="100%" 
-        height="220" 
-        th:src="${aula.urlLink}" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
-</iframe>
+            <iframe th:if="${aula.urlLink != null}"
+                    width="100%" 
+                    height="220" 
+                    th:src="${aula.urlLink}" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+            </iframe>
             
             <div th:unless="${aula.urlLink != null}" style="height:220px; background:#ddd; display:flex; align-items:center; justify-content:center;">
                 <i class="fas fa-video-slash"></i>
@@ -57,10 +57,19 @@
         </div>
 
         <div class="video-meta">
-            <h4 th:text="${aula.titulo}">Título</h4>
+            <a th:href="@{/assistir/{id}(id=${aula.id})}" style="text-decoration: none; color: inherit;">
+                <h4 th:text="${aula.titulo}" style="color: #9b6bff; cursor: pointer; margin-bottom: 8px;">Título</h4>
+            </a>
+            
             <p th:text="${aula.descricao}">Descrição</p>
-            <div class="status-tag">
+            
+            <div class="status-tag" style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
                 <span th:text="${aula.nivel}">Nível</span>
+                
+                <a th:href="@{/assistir/{id}(id=${aula.id})}" 
+                   style="background: #9b6bff; color: white; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold;">
+                   Assistir <i class="fas fa-play-circle" style="margin-left: 5px;"></i>
+                </a>
             </div>
         </div>
     </div>

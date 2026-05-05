@@ -225,4 +225,19 @@ public String salvarConteudo(@ModelAttribute Conteudo conteudo, HttpSession sess
     private boolean adminLogado(HttpSession session) {
         return session.getAttribute("isAdmin") != null;
     }
+
+    @GetMapping("/assistir/{id}")
+public String assistirAula(@PathVariable Long id, Model model, HttpSession session) {
+    if (!usuarioLogado(session)) return "redirect:/login";
+    
+    // Busca a aula no banco pelo ID que veio no clique
+    Conteudo aula = conteudoRepository.findById(id).orElse(null);
+    
+    if (aula == null) return "redirect:/inicio"; // Se não achar a aula, volta pro início
+
+    model.addAttribute("aula", aula);
+    model.addAttribute("usuario", (Usuario) session.getAttribute("usuario"));
+    
+    return "TelaAssistir"; // Nome do seu arquivo HTML
+}
 }
