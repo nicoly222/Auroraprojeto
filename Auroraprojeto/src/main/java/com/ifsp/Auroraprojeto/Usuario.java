@@ -1,11 +1,11 @@
 package com.ifsp.Auroraprojeto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.Entity; 
+import jakarta.persistence.GeneratedValue; 
+import jakarta.persistence.GenerationType; 
+import jakarta.persistence.Id; 
 import jakarta.persistence.Table;
-import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "usuario")
@@ -22,7 +22,6 @@ public class Usuario {
     private String curso;
     private String cidade;
     private String telefone;
-    private String role;
 
     // ================= ID =================
     public Long getId() {
@@ -87,12 +86,4 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    // ================= ROLE (ADMIN / USER) =================
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
