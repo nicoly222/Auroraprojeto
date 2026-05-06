@@ -49,6 +49,28 @@ public class AuroraController {
         return "redirect:/login";
     }
 
+    // ================= CADASTRO DE ALUNO =================
+
+    @GetMapping("/cadastro")
+    public String telaCadastro(HttpSession session, Model model) {
+        if (usuarioLogado(session)) return "redirect:/inicio";
+        // Passamos um objeto vazio para o formulário Thymeleaf preencher
+        model.addAttribute("usuario", new Usuario());
+        return "Cadastro"; 
+    }
+@PostMapping("/cadastro")
+public String realizarCadastro(@ModelAttribute Usuario usuario) {
+    // Note que aqui usamos o método 'cadastrar' que você já tem no Service
+    // Ele retorna 'true' se salvou e 'false' se o e-mail já existe
+    boolean sucesso = usuarioService.cadastrar(usuario);
+
+    if (sucesso) {
+        return "redirect:/login?sucesso=true";
+    } else {
+        // Se o método retornar false, redireciona com erro de e-mail
+        return "redirect:/cadastro?erro=email_existente";
+    }
+}
     // ================= ÁREA DO ALUNO =================
 
     @GetMapping("/inicio")
