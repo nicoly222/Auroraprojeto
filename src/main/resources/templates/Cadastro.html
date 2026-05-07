@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,25 +14,33 @@
                 <h1 class="title">Cadastrar</h1>
                 <p class="subtitle">Informe seus dados</p>
 
-                <form action="/cadastro" method="post">
+                <form th:action="@{/cadastro}" th:object="${usuario}" method="post">
                 
+                    <div th:if="${param.erro == 'email_existente'}" style="color: #ff4d4d; margin-bottom: 15px; font-weight: bold;">
+                        Este e-mail já está em uso!
+                    </div>
+
                     <div class="input-group">
                         <label>Nome</label>
-                        <input type="text" name="nome" required>
+                        <input type="text" th:field="*{nome}" required>
                     </div>
                     <div class="input-group">
                         <label>Email</label>
-                        <input type="email" name = "email" required>
+                        <input type="email" th:field="*{email}" required>
                     </div>
                     <div class="input-group">
                         <label>Telefone</label>
-                        <input type="tel" name="telefone" required>
+                        <input type="tel" th:field="*{telefone}" required>
                     </div>
                     <div class="input-group">
                         <label>Senha</label>
-                        <input type="password" name="senha" required>
+                        <input type="password" th:field="*{senha}" required>
                     </div>
                     <button type="submit" class="btn-cadastrar">Cadastrar</button>
+                    
+                    <p class="subtitle" style="margin-top: 15px;">
+                        Já tem conta? <a th:href="@{/login}" style="color: #6a5acd; font-weight: bold;">Faça Login</a>
+                    </p>
                 </form>
             </div>
         </section>

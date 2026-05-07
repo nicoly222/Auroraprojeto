@@ -49,6 +49,28 @@ public class AuroraController {
         return "redirect:/login";
     }
 
+    // ================= CADASTRO DE ALUNO =================
+
+    @GetMapping("/cadastro")
+    public String telaCadastro(HttpSession session, Model model) {
+        if (usuarioLogado(session)) return "redirect:/inicio";
+        // Passamos um objeto vazio para o formulário Thymeleaf preencher
+        model.addAttribute("usuario", new Usuario());
+        return "Cadastro"; 
+    }
+@PostMapping("/cadastro")
+public String realizarCadastro(@ModelAttribute Usuario usuario) {
+    // Note que aqui usamos o método 'cadastrar' que você já tem no Service
+    // Ele retorna 'true' se salvou e 'false' se o e-mail já existe
+    boolean sucesso = usuarioService.cadastrar(usuario);
+
+    if (sucesso) {
+        return "redirect:/login?sucesso=true";
+    } else {
+        // Se o método retornar false, redireciona com erro de e-mail
+        return "redirect:/cadastro?erro=email_existente";
+    }
+}
     // ================= ÁREA DO ALUNO =================
 
     @GetMapping("/inicio")
@@ -93,14 +115,18 @@ public class AuroraController {
         return "TelaExercicios";
     }
 
-    @GetMapping("/provas")
-    public String provas(HttpSession session, Model model) {
-        if (!usuarioLogado(session)) return "redirect:/login";
-        model.addAttribute("usuario", (Usuario) session.getAttribute("usuario"));
-        List<Conteudo> provas = conteudoRepository.findByTipo(TipoConteudo.PROVA);
-        model.addAttribute("provas", provas);
-        return "TelaProvas";
-    }
+   @GetMapping("/provas")
+public String provas(HttpSession session, Model model) {
+    if (!usuarioLogado(session)) return "redirect:/login";
+    
+    // Busca apenas o que é do tipo PROVA no banco
+    List<Conteudo> provasAnteriores = conteudoRepository.findByTipo(TipoConteudo.PROVA);
+    
+    model.addAttribute("provas", provasAnteriores);
+    model.addAttribute("usuario", (Usuario) session.getAttribute("usuario"));
+    
+    return "TelaProvas";
+}
 
     @GetMapping("/material")
     public String material(HttpSession session, Model model) {
@@ -215,6 +241,11 @@ public String salvarConteudo(@ModelAttribute Conteudo conteudo, HttpSession sess
         conteudoRepository.deleteById(id);
         return "redirect:/admin/conteudo";
     }
+    @GetMapping("/admin/provas") // Esse link deve ser o mesmo que está no seu menu lateral
+public String telaUploadProvas(HttpSession session) {
+    if (!adminLogado(session)) return "redirect:/login-admin";
+    return "upload-provas"; // Nome exato do seu arquivo HTML sem o .html
+}
 
     // ================= MÉTODOS AUXILIARES =================
 

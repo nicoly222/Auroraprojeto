@@ -48,47 +48,30 @@
                 </div>
             </header>
 
-            <section class="content-body">
-                <h1 class="title-page">Provas Anteriores</h1>
-                
-                <div class="provas-grid">
-                    <div class="prova-card">
-                        <div class="prova-icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
-                        <div class="prova-info">
-                            <h3>ENEM 2024</h3>
-                            <span>Caderno Azul - 1º Dia</span>
-                        </div>
-                        <button type="button" class="btn-download" aria-label="Baixar Prova"><i class="fas fa-cloud-download-alt"></i></button>
-                    </div>
+           <section class="content-body">
+    <h1 class="title-page">Provas Anteriores</h1>
+    
+    <div class="provas-grid">
+        <div class="prova-card" th:each="prova : ${provas}">
+            <div class="prova-icon">
+                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+            </div>
+            <div class="prova-info">
+                <h3 th:text="${prova.titulo}">Nome da Prova</h3>
+                <span th:text="${prova.descricao}">Descrição ou Ano</span>
+            </div>
+            
+            <a th:href="${prova.urlLink}" target="_blank" class="btn-download" title="Abrir Prova">
+                <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
 
-                    <div class="prova-card">
-                        <div class="prova-icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
-                        <div class="prova-info">
-                            <h3>ENEM 2024</h3>
-                            <span>Caderno Amarelo - 2º Dia</span>
-                        </div>
-                        <button type="button" class="btn-download" aria-label="Baixar Prova"><i class="fas fa-cloud-download-alt"></i></button>
-                    </div>
-
-                    <div class="prova-card">
-                        <div class="prova-icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
-                        <div class="prova-info">
-                            <h3>UERJ 2025</h3>
-                            <span>Exame de Qualificação</span>
-                        </div>
-                        <button type="button" class="btn-download" aria-label="Baixar Prova"><i class="fas fa-cloud-download-alt"></i></button>
-                    </div>
-
-                    <div class="prova-card">
-                        <div class="prova-icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div>
-                        <div class="prova-info">
-                            <h3>FUVEST 2024</h3>
-                            <span>Primeira Fase</span>
-                        </div>
-                        <button type="button" class="btn-download" aria-label="Baixar Prova"><i class="fas fa-cloud-download-alt"></i></button>
-                    </div>
-                </div>
-            </section>
+        <div th:if="${#lists.isEmpty(provas)}" style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">
+            <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px;"></i>
+            <p>Nenhuma prova cadastrada no momento.</p>
+        </div>
+    </div>
+</section>
         </main>
 
         <aside class="right-sidebar-padrao" style="width: 300px; padding: 20px;">
